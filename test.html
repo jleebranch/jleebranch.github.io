@@ -22,6 +22,18 @@
       console.log(err, data); 
     });
 
+    $(document).ready(function () {
+      //your code here
+      $(function(){
+          $("#branch-banner-iframe").on( "swipe", swipeHandler );
+          // Callback function references the event target and adds the 'swipe' class to it
+          function swipeHandler( event ){
+            console.log('swipe');
+            //$( event.target ).addClass( "swipe" );
+          }
+      });
+    });
+
     </script>
   </head>
   <body>
