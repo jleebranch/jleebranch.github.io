@@ -37,6 +37,12 @@
     //   });
     // });
 
+    setTimeout(function(){ 
+      branch.closeJourney(function(err) { console.log(err); });
+      console.log("timeoutcalled"); 
+    }, 5000);
+
+
     </script>
   </head>
   <body>
