@@ -1,0 +1,27 @@
+ {
+  "applinks": {
+    "apps": [
+      
+    ],
+    "details": [
+      {
+        "appID": "6KABX57QDA.com.headsuphealth.app",
+        "paths": [
+          "*"
+        ]
+      },
+      {
+        "appID": "6KABX57QDA.com.headsuphealth.beta",
+        "paths": [
+          "*"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "6KABX57QDA.com.headsuphealth.app",
+      "6KABX57QDA.com.headsuphealth.beta"
+    ]
+  }
+}
