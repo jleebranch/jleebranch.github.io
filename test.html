@@ -20,33 +20,20 @@
     
 
 
+   /* branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', function(err, data) {
+      console.log(err, data); 
+    });*/
 
-        // optional additional deep link data
-   var linkData = {
-      campaign: 'mytestcampaign',
-      channel: 'facebook',
-      feature: 'dashboard',
-      stage: 'new user',
-      tags: [ 'tag1', 'tag2', 'tag3' ],
-      alias: '',
-      data: {
-        'custom_bool': true,
-        'custom_int': Date.now(),
-        'custom_string': 'hello',
-        '$og_title': 'Title',
-        '$og_description': 'Description',
-        '$og_image_url':'http://lorempixel.com/400/400'
-      }
-    };
-
-    branch.setBranchViewData(linkData);
     //options
-    //var options = { make_new_link : false };
+    var options = { no_journeys: true };
     // init Branch
-    branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', function(err, data) {
+    branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', options, function(err, data) {
       console.log(err, data); 
     });
 
+    branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', function(err, data) {
+      console.log(err, data); 
+    });
 
 
     branch.logEvent(
@@ -81,8 +68,9 @@
   <body>
     <h1>Hello, world!</h1>
     <div style="height: 1000px">test</div>
-    <a href="https://branchster.app.link/D4PpqmuJ7Q"?>link to branch monsters</a>
+    <a href="localhost:8000/testpage2.html"?>link to page 2</a>
     <div to="https://branchster.app.link/D4PpqmuJ7Q">test to</div>
+    <a id="uat-hdr-app-button" href="https://gx9e.app.link/LNCklvsaiL" rel="noopener noreferrer" target="_blank">Open in App</a>
     
 
     <!-- Optional JavaScript -->

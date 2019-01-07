@@ -14,6 +14,21 @@
     <script>
 
 
+    branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', options, function(err, data) {
+      console.log(err, data); 
+    });
+
+    branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', function(err, data) {
+      console.log(err, data); 
+    });
+
+
+    branch.logEvent(
+     "custom_event2",
+     { metadata: '123' },
+     function(err) { console.log(err); }
+    );
+
     </script>
   </head>
   <body>
