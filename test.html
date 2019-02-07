@@ -23,18 +23,10 @@
    /* branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', function(err, data) {
       console.log(err, data); 
     });*/
-
-    //options
-    var options = { no_journeys: true };
     // init Branch
     branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', options, function(err, data) {
       console.log(err, data); 
     });
-
-    branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', function(err, data) {
-      console.log(err, data); 
-    });
-
 
     branch.logEvent(
      "custom_event",
