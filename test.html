@@ -23,18 +23,12 @@
     });*/
       
     //setIdentity  
-    branch.setIdentity('newuser7777');
+    //branch.setIdentity('newuser7777');
       
     // init Branch
     branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', options, function(err, data) {
       console.log(err, data); 
     });
-
-    /*branch.logEvent(
-     "custom_event",
-     { metadata: '123' },
-     function(err) { console.log(err); }
-    );*/
       
     branch.track('COMPLETE_REGISTRATION');
 
