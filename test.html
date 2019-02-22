@@ -21,23 +21,18 @@
    /* branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', function(err, data) {
       console.log(err, data); 
     });*/
-      
 
+    //setIdentity  
+    branch.setIdentity('newuser888', function (err, data) {
+      console.log(err, data);
+    });
       
     // init Branch
     branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', options, function(err, data) {
-      console.log(err, data); 
-      
-        //setIdentity  
-        branch.setIdentity('newuser888', function (err, data) {
-          console.log(err, data);
-        });
-
-        branch.track("COMPLETE_REGISTRATION");
-      
+        console.log(err, data);
+        branch.track("COMPLETE_REGISTRATION");  
     });
       
-
     </script>
   </head>
   <body>
