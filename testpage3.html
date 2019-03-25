@@ -21,9 +21,22 @@
     //options
     //var options = { make_new_link : false };
     // init Branch
-    branch.init('key_live_cnChxhZYcC9rBMAG82xLNjdcFBokyGD0', function(err, data) {
+    branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', function(err, data) {
       console.log(err, data); 
-    });
+      
+    });    
+      
+      
+     var event = "joonsCustomEvent";
+     var metadata = { "$segment_anonymous_id": "joonsanonid" };
+      
+     branch.track(
+          event,
+          metadata,
+          callback (err) {
+            console.log(err);
+     });
+
 
     </script>
   </head>
