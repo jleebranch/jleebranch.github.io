@@ -25,7 +25,7 @@
       console.log(err, data); 
     });
       
-    branch.sendSMS({
+    branch.sendSMS(
       phone: '6515080845',
       {
           tags: ['tag1', 'tag2'],
@@ -39,7 +39,7 @@
       },
       { make_new_link: false }, // Default: false. If set to true, sendSMS will generate a new link even if one already exists.
       function(err) { console.log(err); }
-});
+    );
 
       
       
