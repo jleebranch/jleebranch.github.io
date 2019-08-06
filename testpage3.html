@@ -24,6 +24,26 @@
     branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', function(err, data) {
       console.log(err, data); 
     });
+    
+    var phone = '6515080845';
+    var linkData = {
+        tags: [],
+        channel: 'Website',
+        feature: 'TextMeTheApp',
+        data: {
+            'foo': 'bar'
+        }
+    };
+    var options = {};
+    var callback = function(err, result) {
+        if (err) {
+            alert("Sorry, something went wrong.");
+        }
+        else {
+            alert("SMS sent!");
+        }
+    };
+    branch.sendSMS(phone, linkData, options, callback);
           
 
 
