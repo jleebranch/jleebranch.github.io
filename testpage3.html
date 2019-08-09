@@ -32,7 +32,7 @@
         feature: 'TextMeTheApp',
         data: {
             'foo': 'bar',
-            '$custom_sms_text': 'Get the Monese banking app now xpatrio {{ link }}'     
+            '$custom_sms_text': 'TEST 2 {{ link }}'     
         }
     };
     var options = {};
@@ -44,14 +44,15 @@
             alert("SMS sent!");
         }
     };
-    //branch.sendSMS(phone, linkData, options, callback);
+    branch.sendSMS(phone, linkData, options, callback);
           
-
+    
 
     </script>
   </head>
   <body>
     <h1>Hello, world!</h1>
+    
     
     <a href="https://link.smule.com/JQdpCKFRZY">https://link.smule.com/JQdpCKFRZY</a>
     
