@@ -25,34 +25,35 @@
       console.log(err, data); 
     });
     
-    var phone = '6515080845';
-    var linkData = {
-        tags: [],
-        channel: 'Website',
-        feature: 'TextMeTheApp',
-        data: {
-            'foo': 'bar',
-            '$custom_sms_text': 'TEST 2 {{ link }}'     
-        }
-    };
-    var options = {};
-    var callback = function(err, result) {
-        if (err) {
-            alert("Sorry, something went wrong.");
-        }
-        else {
-            alert("SMS sent!");
-        }
-    };
-    branch.sendSMS(phone, linkData, options, callback);
-          
-    
+    function sendText(){
+      var phone = '6515080845';
+      var linkData = {
+          tags: [],
+          channel: 'Website',
+          feature: 'TextMeTheApp',
+          data: {
+              'foo': 'bar',
+              '$custom_sms_text': 'TEST 2 {{ link }}'     
+          }
+      };
+      var options = {};
+      var callback = function(err, result) {
+          if (err) {
+              alert("Sorry, something went wrong.");
+          }
+          else {
+              alert("SMS sent!");
+          }
+      };
+      branch.sendSMS(phone, linkData, options, callback);
+    }
 
     </script>
   </head>
   <body>
     <h1>Hello, world!</h1>
     
+    <button onclick="sendText()">sendSMS</button>
     
     <a href="https://link.smule.com/JQdpCKFRZY">https://link.smule.com/JQdpCKFRZY</a>
     
