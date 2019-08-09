@@ -33,7 +33,7 @@
           feature: 'TextMeTheApp',
           data: {
               'foo': 'bar',
-              '$custom_sms_text': 'TEST 2 {{ link }}'     
+              '$custom_sms_text': document.getElementById("textdata").value    
           }
       };
       var options = {};
@@ -51,7 +51,8 @@
     </script>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    
+    <input type="text" id="textdata" value="TEST 2 {{ link }}">
     
     <button onclick="sendText()">sendSMS</button>
     
