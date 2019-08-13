@@ -31,6 +31,29 @@ function validateProtocol(url){
 
 			return false;
 		};
+	    
+	   
+	    
+function isSafariBrowser(ua) {
+			return !!/^((?!chrome|android|crios|fxios).)*safari/i.test(ua);
+		}
+
+		function isGreaterThanVersion(ua, v) {
+			var match = /iPhone OS ([^ ]*)/i.exec(ua);
+			if (match && match[1]) {
+				try {
+					var version = match[1].replace(/_/gi, '.');
+					version = version.split('.');
+					version = parseFloat(version[0] + '.' + version[1]);
+					if (version >= v) {
+						return true;
+					}
+				} catch (e) {
+					return false;
+				}
+			}
+			return false;
+		}
 
 	        (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
 
