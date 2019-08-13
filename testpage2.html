@@ -65,7 +65,11 @@ function isSafariBrowser(ua) {
 	    
       window.onload = function() {
 						//window.top.location = validateProtocol("navertv://open?link_click_id=689873552207965024");
-	      					window.top.location = validateProtocol("branchsters://open");
+	      					//window.top.location = validateProtocol("branchsters://open");
+	      
+	      					var assignvalue = location.assign(validateProtocol("branchsters://open"));
+	      					console.log('assign value ' + assignvalue);
+	      					
 						setTimeout(function timeout() {
 							if (document.webkitHidden || document.hidden) { return; };
 							if (isSafari12Dot3OrGreater()) {
