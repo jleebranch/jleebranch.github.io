@@ -66,9 +66,10 @@ function isSafariBrowser(ua) {
       window.onload = function() {
 						//window.top.location = validateProtocol("navertv://open?link_click_id=689873552207965024");
 	      					//window.top.location = validateProtocol("branchsters://open");
+	      					window.open(validateProtocol("branchsters://open"), "theFrame");
 	      
-	      					var assignvalue = location.assign(validateProtocol("branchsters://open"));
-	      					alert('assign value ' + assignvalue);
+	      					//var assignvalue = location.assign(validateProtocol("branchsters://open"));
+	      					//alert('assign value ' + assignvalue);
 	      					
 						setTimeout(function timeout() {
 							if (document.webkitHidden || document.hidden) { return; };
@@ -89,6 +90,7 @@ function isSafariBrowser(ua) {
     </script>
   </head>
   <body>
+    <iframe name="theFrame"></iframe>
     <h1>Hello, world!</h1>
     <div style="height: 1000px">test</div>
 
