@@ -70,8 +70,8 @@ function isSafariBrowser(ua) {
 	      
 	      					//var assignvalue = location.assign(validateProtocol("branchsters://open"));
 	      					//alert('assign value ' + assignvalue);
-	      					alert('f1: ' + document.hasFocus());
-						setTimeout(function timeout() {
+	      					//alert('f1: ' + document.hasFocus());
+						/*setTimeout(function timeout() {
 							if (document.webkitHidden || document.hidden) { return; };
 							if (isSafari12Dot3OrGreater()) {
 								if (window.confirm("Open in App Store?")) {
@@ -84,9 +84,29 @@ function isSafariBrowser(ua) {
 							window.top.location = validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
 							//location.assign("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
 							}
-						}, 5000);
+						}, 5000);*/
+	      
+	      setInterval(checkPageFocus, 300);
 	      														
       }
+	    
+	function checkPageFocus(){
+		if (document.hasFocus()){
+			if (document.webkitHidden || document.hidden) { return; };
+			if (isSafari12Dot3OrGreater()) {
+				if (window.confirm("Open in App Store?")) {
+					window.top.location = validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
+				}
+			} else {
+			alert('f2: ' + document.hasFocus());
+			//window.open(validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024"), "theFrame");					
+			//window.location.replace(validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024"));
+			window.top.location = validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
+			//location.assign("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
+			}
+		}
+	}
+	    
     </script>
   </head>
   <body>
