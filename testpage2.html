@@ -12,6 +12,8 @@
     <title>dummy page 2</title>
 
     <script>
+	   
+	    var interval;
 function validateProtocol(url){
    var parser = document.createElement("a");
    parser.href = url; 
@@ -86,7 +88,7 @@ function isSafariBrowser(ua) {
 							}
 						}, 5000);*/
 	      
-	     var interval = setInterval(checkPageFocus, 300);
+	    interval = setInterval(checkPageFocus, 300);
 	      														
       }
 	    
