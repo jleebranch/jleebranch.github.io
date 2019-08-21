@@ -67,7 +67,7 @@ function isSafariBrowser(ua) {
 	    
       window.onload = function() {
 						//window.top.location = validateProtocol("navertv://open?link_click_id=689873552207965024");
-	      					window.top.location = validateProtocol("branchsters://open");
+	      					//window.top.location = validateProtocol("branchsters://open");
 	      					//window.open(validateProtocol("branchsters://open"), "theFrame");
 	      
 	      					//var assignvalue = location.assign(validateProtocol("branchsters://open"));
@@ -87,6 +87,14 @@ function isSafariBrowser(ua) {
 							//location.assign("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
 							}
 						}, 3000);*/
+	      
+	      	try {
+		  window.top.location = validateProtocol("branchsters://open");
+		}
+		catch(err) {
+		  alert(err);
+		}
+
 	      														
       }
 	    
