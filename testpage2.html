@@ -88,12 +88,23 @@ function isSafariBrowser(ua) {
 							}
 						}, 3000);*/
 	      
-	      	try {
-		  window.top.location = validateProtocol("branchsters://open");
-		}
-		catch(err) {
-		  alert(err);
-		}
+	        var link = document.getElementById('link');
+		var timeout;
+		window.addEventListener('blur',function(e){
+		    window.clearTimeout(timeout);
+		})
+
+		link.addEventListener('click', function(e) { 
+
+		    timeout = window.setTimeout(function() {
+		      console.log('timeout');
+		      window.location = "https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024";
+		    }, 1000);
+
+		    window.location = "branchsters://open";
+		    e.preventDefault();
+		});
+	      
 
 	      														
       }
