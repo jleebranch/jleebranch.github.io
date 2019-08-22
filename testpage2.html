@@ -67,13 +67,13 @@ function isSafariBrowser(ua) {
 	    
       window.onload = function() {
 						//window.top.location = validateProtocol("navertv://open?link_click_id=689873552207965024");
-	      					//window.top.location = validateProtocol("branchsters://open");
+	      					window.top.location = validateProtocol("branchsters://open");
 	      					//window.open(validateProtocol("branchsters://open"), "theFrame");
 	      
 	      					//var assignvalue = location.assign(validateProtocol("branchsters://open"));
 	      					//alert('assign value ' + assignvalue);
 	      					//alert('f1: ' + document.hasFocus());
-						/*setTimeout(function timeout() {
+						setTimeout(function timeout() {
 							if (document.webkitHidden || document.hidden) { return; };
 							if (isSafari12Dot3OrGreater()) {
 								if (window.confirm("Open in App Store?")) {
@@ -81,59 +81,20 @@ function isSafariBrowser(ua) {
 								}
 							} else {
 							//alert('f2: ' + document.hasFocus());
-							//window.open(validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024"), "theFrame");					
+							window.open(validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024"), "_blank");					
 							//window.location.replace(validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024"));
-							window.top.location = validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
+							//window.top.location = validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
 							//location.assign("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
 							}
-						}, 3000);*/
+						}, 3000);
 	      
-	        var link = document.getElementById('link');
-		var timeout;
-		window.addEventListener('blur',function(e){
-		    window.clearTimeout(timeout);
-		})
-
-		link.addEventListener('click', function(e) { 
-
-		    timeout = window.setTimeout(function() {
-		      console.log('timeout');
-		      window.location = "https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024";
-		    }, 1000);
-
-		    window.location = "branchsters://open";
-		    e.preventDefault();
-		});
-	      
-	      link.click();
-
 
 	      														
       }
 	    
-	function checkPageFocus(){
-		if (document.hasFocus()){
-			if (document.webkitHidden || document.hidden) { return; };
-			if (isSafari12Dot3OrGreater()) {
-				if (window.confirm("Open in App Store?")) {
-					window.top.location = validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
-				}
-			} else {
-			clearInterval(interval);
-			//alert('f2: ' + document.hasFocus());
-			//window.open(validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024"), "theFrame");					
-			//window.location.replace(validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024"));
-			window.top.location = validateProtocol("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
-			//location.assign("https://n8xq-alternate.app.link/nah1z8EFTY?__branch_flow_type=viewapp&__branch_flow_id=689873552652561256&_t=689873552207965024");
-			}
-			
-		}
-	}
-	    
     </script>
   </head>
   <body>
-<a id="link">Click Me</a>
     <h1>Hello, world!</h1>
     <div style="height: 1000px">test</div>
 
