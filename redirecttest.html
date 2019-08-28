@@ -26,15 +26,25 @@
       console.log(err, data); 
     });
     
-    setTimeout(function() {
+    /*setTimeout(function() {
 	    window.top.location = "cordovajoon://open?link_click_id=619965911704250832";
-    }, 500);
- 
+    }, 500);*/
+
+	    
+    setTimeout(() => {
+        var div = document.getElementById('redirect-div');
+        div.click();
+    }, 1000);
+    function navigate() {
+        var url ="cordovajoon://open?link_click_id=619965911704250832";
+        window.top.location = url;
+    }
 
     </script>
   </head>
   <body>
-    
+    <div id="redirect-div" onclick="navigate()">
+    </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
