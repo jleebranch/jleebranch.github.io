@@ -17,16 +17,13 @@
     <script>
       
 
-    // load Branch
-    (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
     
-
-    branch.init('key_live_mfOJnJ8EHzaVksDBwjkfKnmgwxaIDlcb', 
-    {
-      'tracking_disabled' : true
-    }, function(err, data) {
-      console.log(err, data); 
+	(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
+branch.init('key_live_mfOJnJ8EHzaVksDBwjkfKnmgwxaIDlcb', function(err, data) {
+      console.log(err, data);
     });
+    
+    
     
     function sendText(){
       var phone = '6515080845';
@@ -50,6 +47,42 @@
       };
       branch.sendSMS(phone, linkData, options, callback);
     }
+      
+      
+    // get url query params
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    var apiEndpoint = 'https://prod.truthify.com/v2/api/deeplink/info/';
+    var deeplinkId = getParameterByName('uuid');
+    
+    // load Branch
+    /* (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
+    branch.init('key_live_mfOJnJ8EHzaVksDBwjkfKnmgwxaIDlcb', function(err, data) {
+      console.log(err, data);
+    }); */ 
+
+   branch.setBranchViewData({
+      data: {
+        '$deeplink_path': deeplinkId,
+        "$desktop_url": "https://www.truthify.com",
+        "$ios_url": "Truthify://",
+        "$ipad_url": "Truthify://",
+        "$android_url": "truthify://",        
+        'DeepLinkId': deeplinkId,
+        '$ios_passive_deepview': false,
+        '$fallback_url': 'https://www.truthify.com'
+        //"$match_duration": "2000",  // the time that a click will wait for an app open to match                 
+      }
+    });
+  
       
 
     </script>
