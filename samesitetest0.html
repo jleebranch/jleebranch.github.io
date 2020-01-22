@@ -18,12 +18,30 @@
     
     branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', function(err, data) {
       console.log(err, data); 
-    });         
+    });
+      
+    function showLocalStorage() {
+      var branchLocal = localStorage.getItem('branch_session_first');
+      document.getElementById("branchLocalStorage").innerHTML=branchLocal;
+    }
+      
+    function showCookie() {
+      var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)test2\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      document.getElementById("branchCookie").innerHTML=cookieValue;
+    }
+      
     </script>
   </head>
   <body>
     
     test0
+    
+    <div><script>localStorage.getItem('branch_session_first');</script></div>
+    <div id="branchLocalStorage">
+    </div>
+    
+    <div id="branchCookie">
+    </div>
     
     <a href="https://joonbranch.app.link/OhIMLECyr3">https://joonbranch.app.link/OhIMLECyr3</a>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
