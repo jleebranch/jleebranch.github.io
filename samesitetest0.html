@@ -25,13 +25,22 @@
       document.getElementById("branchLocalStorage").innerHTML=branchLocal;
     }
       
-    function showCookie() {
-      document.getElementById("branchCookie").innerHTML=document.cookie;
+    function listCookies() {
+        var theCookies = document.cookie.split(';');
+        var aString = '';
+        for (var i = 1 ; i <= theCookies.length; i++) {
+            aString += i + ' ' + theCookies[i-1] + "\n";
     }
+        return aString;
+    }
+    
       
       document.addEventListener('DOMContentLoaded', function(event) {
   showLocalStorage();
-      showCookie();
+        
+        
+            document.getElementById('branchCookie').innerHTML=listCookies();
+
 })
      
       
