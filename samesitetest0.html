@@ -26,8 +26,7 @@
     }
       
     function showCookie() {
-      var cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)_s\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-      document.getElementById("branchCookie").innerHTML=cookieValue;
+      document.getElementById("branchCookie").innerHTML=document.cookie;
     }
       
       document.addEventListener('DOMContentLoaded', function(event) {
