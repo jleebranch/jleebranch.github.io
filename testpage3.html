@@ -69,7 +69,7 @@
           return document.cookie.indexOf(redirectionCookie) === -1 ? false : true;
         }
 
-        if (!hasCookie()) {
+        //if (!hasCookie()) {
           document.cookie = redirectionCookie + "=true; expires=" + new Date(Date.now() + undefined).toGMTString();
           window.top.location = validateProtocol("linewebtoon://episodeList/webtoon?titleNo=1625&referrer=mat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983%26link_click_id%3D759177006163470074&mat_click_id=41a03f7517df4338aa51bdd1f2907496-20200220-189983");
           setTimeout(function timeout() {
@@ -82,7 +82,7 @@
               window.top.location = validateProtocol("itms-appss://itunes.apple.com/app/id894546091?mat_deeplink=linewebtoon%3A%2F%2FepisodeList%2Fwebtoon%3FtitleNo%3D1625%26referrer%3Dmat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983%26link_click_id%3D759177006163470074%26mat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983&referrer=mat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983%26link_click_id%3D759177006163470074&mat_click_id=41a03f7517df4338aa51bdd1f2907496-20200220-189983");
             }
           }, 250);
-        }
+        //}
         document.addEventListener("visibilitychange", handler); 
 
     </script>
