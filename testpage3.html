@@ -15,146 +15,81 @@
     <script type="text/javascript" src="https://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
 
     <script>
-      
+    function validateProtocol(url){
+   var parser = document.createElement("a");
+   parser.href = url; 
+   var protocol = parser.protocol.toLowerCase();
+   if ([ "javascript:", "vbscript:", "data:", "ftp:", ":", " "].indexOf(protocol) < 0) {
+      return url;}
+   return null;
+}
 
-    
-	(function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
-branch.init('key_live_mfOJnJ8EHzaVksDBwjkfKnmgwxaIDlcb', function(err, data) {
-      console.log(err, data);
-    });
-    
-    
-    
-    function sendText(){
-      var phone = '6515080845';
-      var linkData = {
-          tags: [],
-          channel: 'Website',
-          feature: 'TextMeTheApp',
-          data: {
-              'foo': 'bar',
-              '$custom_sms_text': document.getElementById("textdata").value    
-          }
-      };
-      var options = {};
-      var callback = function(err, result) {
-          if (err) {
-              alert("Sorry, something went wrong.");
-          }
-          else {
-              alert("SMS sent!");
-          }
-      };
-      branch.sendSMS(phone, linkData, options, callback);
-    }
-      
-      
-    // get url query params
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-        name = name.replace(/[\[\]]/g, '\\$&');
-        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    function isSafariBrowser(ua) {
+      return !!/^((?!chrome|android|crios|fxios).)*safari/i.test(ua);
     }
 
-    var apiEndpoint = 'https://prod.truthify.com/v2/api/deeplink/info/';
-    var deeplinkId = getParameterByName('uuid');
-    
-    // load Branch
-    /* (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
-    branch.init('key_live_mfOJnJ8EHzaVksDBwjkfKnmgwxaIDlcb', function(err, data) {
-      console.log(err, data);
-    }); */ 
-
-   branch.setBranchViewData({
-      data: {
-        '$deeplink_path': deeplinkId,
-        "$desktop_url": "https://www.truthify.com",
-        "$ios_url": "Truthify://",
-        "$ipad_url": "Truthify://",
-        "$android_url": "truthify://",        
-        'DeepLinkId': deeplinkId,
-        '$ios_passive_deepview': false,
-        '$fallback_url': 'https://www.truthify.com'
-        //"$match_duration": "2000",  // the time that a click will wait for an app open to match                 
+    function isGreaterThanVersion(ua, v) {
+      var match = /iPhone OS ([^ ]*)/i.exec(ua);
+      if (match && match[1]) {
+        try {
+          var version = match[1].replace(/_/gi, '.');
+          version = version.split('.');
+          version = parseFloat(version[0] + '.' + version[1]);
+          if (version >= v) {
+            return true;
+          }
+        } catch (e) {
+          return false;
+        }
       }
-    });
-  
-      
+      return false;
+    }
+
+    function isSafari12Dot3OrGreater() {
+      var ua = navigator.userAgent;
+      var isSafari = isSafariBrowser(ua);
+
+      if (isSafari) {
+        return isGreaterThanVersion(ua, 12.3);
+      }
+
+      return false;
+    };
+        var hasRedirected = false;
+        var handler = function() {
+          if (!document.hidden && !hasRedirected && !true) {
+            window.top.location = validateProtocol("itms-appss://itunes.apple.com/app/id894546091?mat_deeplink=linewebtoon%3A%2F%2FepisodeList%2Fwebtoon%3FtitleNo%3D1625%26referrer%3Dmat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983%26link_click_id%3D759177006163470074%26mat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983&referrer=mat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983%26link_click_id%3D759177006163470074&mat_click_id=41a03f7517df4338aa51bdd1f2907496-20200220-189983");
+            hasRedirected = true;
+          }
+        };
+
+        var redirectionCookie = "ignore_uri_redirect_bnc";
+
+        function hasCookie() {
+          return document.cookie.indexOf(redirectionCookie) === -1 ? false : true;
+        }
+
+        if (!hasCookie()) {
+          document.cookie = redirectionCookie + "=true; expires=" + new Date(Date.now() + undefined).toGMTString();
+          window.top.location = validateProtocol("linewebtoon://episodeList/webtoon?titleNo=1625&referrer=mat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983%26link_click_id%3D759177006163470074&mat_click_id=41a03f7517df4338aa51bdd1f2907496-20200220-189983");
+          setTimeout(function timeout() {
+            if (document.webkitHidden || document.hidden) { return; };
+            if (true && isSafari12Dot3OrGreater()) {
+              if (window.confirm("Open in App Store?")) {
+                window.top.location = validateProtocol("itms-appss://itunes.apple.com/app/id894546091?mat_deeplink=linewebtoon%3A%2F%2FepisodeList%2Fwebtoon%3FtitleNo%3D1625%26referrer%3Dmat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983%26link_click_id%3D759177006163470074%26mat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983&referrer=mat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983%26link_click_id%3D759177006163470074&mat_click_id=41a03f7517df4338aa51bdd1f2907496-20200220-189983");
+              }
+            } else {
+              window.top.location = validateProtocol("itms-appss://itunes.apple.com/app/id894546091?mat_deeplink=linewebtoon%3A%2F%2FepisodeList%2Fwebtoon%3FtitleNo%3D1625%26referrer%3Dmat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983%26link_click_id%3D759177006163470074%26mat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983&referrer=mat_click_id%3D41a03f7517df4338aa51bdd1f2907496-20200220-189983%26link_click_id%3D759177006163470074&mat_click_id=41a03f7517df4338aa51bdd1f2907496-20200220-189983");
+            }
+          }, 250);
+        }
+        document.addEventListener("visibilitychange", handler); 
 
     </script>
   </head>
   <body>
-    <a href="https://branchster.app.link/4UINg77171">https://branchster.app.link/4UINg77171</a>
-
     
-    
-    <input type="text" id="textdata" value="TEST 2 {{ link }}">
-    
-    <button onclick="sendText()">sendSMS</button>
-    
-    
-    
-    <a href="https://joonbranch.app.link/MEHdE4tnvZ">https://joonbranch.app.link/MEHdE4tnvZ</a>
-
-    
-    <a href="https://jleebranch.github.io/redirecttest">https://jleebranch.github.io/redirecttest</a>
-    
-    <a href="https://n8xq.app.link/nah1z8EFTY?$uri_redirect_mode=1&$ios_deepview=branch_default">https://n8xq.app.link/nah1z8EFTY?$uri_redirect_mode=1&$ios_deepview=branch_default</a>
-    
-    <a href="https://n8xq.app.link/nah1z8EFTY?$uri_redirect_mode=1">https://n8xq.app.link/nah1z8EFTY?$uri_redirect_mode=1</a>
-    
-    <a href="https://branchster.app.link/rvsvCvUv6Y">https://branchster.app.link/rvsvCvUv6Y</a>
-    
-    <a href="https://www.smule.com">https://www.smule.com</a>
-    
-    <a href="https://youtube.com">https://youtube.com</a>
-    
-    <a href="https://link.smule.com/JQdpCKFRZY">https://link.smule.com/JQdpCKFRZY</a>
-    
-    <a href="https://smule.app.link/JQdpCKFRZY">https://smule.app.link/JQdpCKFRZY</a>
-    
-    
-    <a href="intent://explore?adjust_external_click_id=688114382384323057&link_click_id=611345198052001155#Intent;scheme=smulesing;package=com.smule.singandroid;S.market_referrer=link_click_id%3D611345198052001155%26utm_source%3DBranch%26utm_campaign%3D_test%26utm_medium%3Djourneys%26adjust_external_click_id%3D688114382384323057&__branch_flow_type%3Dviewapp%26__branch_flow_id%3D688114382384323057%26__branch_mobile_deepview_type%3D4%26_branch_match_id%3D611345198052001155%26referrer%3Dlink_click_id%253D611345198052001155%2526utm_source%253DBranch%2526utm_campaign%253D_test%2526utm_medium%253Djourneys%26_t%3D611345198052001155%26adjust_campaign%3D_test%26adjust_creative%3Djourneys%26adjust_t%3Dhx6dr4q;S.branch_data=%7B%22%24og_title%22%3A%22Smule%20-%20Connecting%20the%20world%20through%20music%22%2C%22%24deeplink_path%22%3A%22explore%22%2C%22~creation_source%22%3A5%2C%22~view_name%22%3A%22EngineeringTest%22%2C%22android_tracker_id%22%3A%225fi80yi%22%2C%22%24og_description%22%3A%22Smule%20develops%20music-making%20apps%20that%20connect%20people%3A%20Smule%2C%20AutoRap%2C%20Magic%20Piano%2C%20Guitar!%2C%20I%20Am%20T-Pain%2C%20Ocarina%2C%20and%20more%E2%80%A6%22%2C%22~journey_id%22%3A%22_test%22%2C%22adjust_campaign%22%3A%22_test%22%2C%22%24uri_redirect_mode%22%3A1%2C%22%24og_image_url%22%3A%22https%3A%2F%2Fw1.tc.smule.com%2Fassets%2Ficons%2Ffacebook_share-9be2d7093a7a5dbbf9784f28a97cb4fe.jpg%22%2C%22adjust_t%22%3A%22hx6dr4q%22%2C%22~feature%22%3A%22journeys%22%2C%22_branch_match_id%22%3A%22611345198052001155%22%2C%22~view_id%22%3A%22684295815622498305%22%2C%22%2Burl%22%3A%22https%3A%2F%2Flink.smule.com%2FGr1PBQ6fIY%3F_branch_match_id%3D611345198052001155%26referrer%3Dlink_click_id%25253D611345198052001155%252526utm_source%25253DBranch%252526utm_campaign%25253D_test%252526utm_medium%25253Djourneys%26adjust_campaign%3D_test%26adjust_creative%3Djourneys%26adjust_t%3Dhx6dr4q%22%2C%22referrer%22%3A%22link_click_id%253D611345198052001155%2526utm_source%253DBranch%2526utm_campaign%253D_test%2526utm_medium%253Djourneys%22%2C%22~tags%22%3A%5B%22EngineeringTest%22%5D%2C%22~journey_name%22%3A%22_test%22%2C%22%24one_time_use%22%3Afalse%2C%22~id%22%3A%22684298832276275258%22%2C%22~campaign%22%3A%22_test%22%2C%22%24canonical_url%22%3A%22https%3A%2F%2Fwww.smule.com%2F%3F_branch_view_id%3D684295815622498305%22%2C%22ios_tracker_id%22%3A%2262h2jrx%22%2C%22adjust_creative%22%3A%22journeys%22%2C%22%2Bdomain%22%3A%22smule.app.link%22%2C%22%2Bclick_timestamp%22%3A1565297479%2C%22%2Bclicked_branch_link%22%3Atrue%2C%22%2Bmatch_guaranteed%22%3Atrue%2C%22%2Bis_first_session%22%3Afalse%7D;B.branch_intent=true;end">samsung android intent</a>
-    
-    
-    <a href="intent://explore?adjust_external_click_id=688114382384323057&link_click_id=611345198052001155#Intent;scheme=smulesing;package=com.smule.singandroid;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.smule.singandroid&referrer=link_click_id%253D611345198052001155%2526utm_source%253DBranch%2526utm_campaign%253D_test%2526utm_medium%253Djourneys%2526adjust_external_click_id%253D688114382384323057;S.market_referrer=link_click_id%3D611345198052001155%26utm_source%3DBranch%26utm_campaign%3D_test%26utm_medium%3Djourneys%26adjust_external_click_id%3D688114382384323057&__branch_flow_type%3Dviewapp%26__branch_flow_id%3D688114382384323057%26__branch_mobile_deepview_type%3D4%26_branch_match_id%3D611345198052001155%26referrer%3Dlink_click_id%253D611345198052001155%2526utm_source%253DBranch%2526utm_campaign%253D_test%2526utm_medium%253Djourneys%26_t%3D611345198052001155%26adjust_campaign%3D_test%26adjust_creative%3Djourneys%26adjust_t%3Dhx6dr4q;S.branch_data=%7B%22%24og_title%22%3A%22Smule%20-%20Connecting%20the%20world%20through%20music%22%2C%22%24deeplink_path%22%3A%22explore%22%2C%22~creation_source%22%3A5%2C%22~view_name%22%3A%22EngineeringTest%22%2C%22android_tracker_id%22%3A%225fi80yi%22%2C%22%24og_description%22%3A%22Smule%20develops%20music-making%20apps%20that%20connect%20people%3A%20Smule%2C%20AutoRap%2C%20Magic%20Piano%2C%20Guitar!%2C%20I%20Am%20T-Pain%2C%20Ocarina%2C%20and%20more%E2%80%A6%22%2C%22~journey_id%22%3A%22_test%22%2C%22adjust_campaign%22%3A%22_test%22%2C%22%24uri_redirect_mode%22%3A1%2C%22%24og_image_url%22%3A%22https%3A%2F%2Fw1.tc.smule.com%2Fassets%2Ficons%2Ffacebook_share-9be2d7093a7a5dbbf9784f28a97cb4fe.jpg%22%2C%22adjust_t%22%3A%22hx6dr4q%22%2C%22~feature%22%3A%22journeys%22%2C%22_branch_match_id%22%3A%22611345198052001155%22%2C%22~view_id%22%3A%22684295815622498305%22%2C%22%2Burl%22%3A%22https%3A%2F%2Flink.smule.com%2FGr1PBQ6fIY%3F_branch_match_id%3D611345198052001155%26referrer%3Dlink_click_id%25253D611345198052001155%252526utm_source%25253DBranch%252526utm_campaign%25253D_test%252526utm_medium%25253Djourneys%26adjust_campaign%3D_test%26adjust_creative%3Djourneys%26adjust_t%3Dhx6dr4q%22%2C%22referrer%22%3A%22link_click_id%253D611345198052001155%2526utm_source%253DBranch%2526utm_campaign%253D_test%2526utm_medium%253Djourneys%22%2C%22~tags%22%3A%5B%22EngineeringTest%22%5D%2C%22~journey_name%22%3A%22_test%22%2C%22%24one_time_use%22%3Afalse%2C%22~id%22%3A%22684298832276275258%22%2C%22~campaign%22%3A%22_test%22%2C%22%24canonical_url%22%3A%22https%3A%2F%2Fwww.smule.com%2F%3F_branch_view_id%3D684295815622498305%22%2C%22ios_tracker_id%22%3A%2262h2jrx%22%2C%22adjust_creative%22%3A%22journeys%22%2C%22%2Bdomain%22%3A%22smule.app.link%22%2C%22%2Bclick_timestamp%22%3A1565297479%2C%22%2Bclicked_branch_link%22%3Atrue%2C%22%2Bmatch_guaranteed%22%3Atrue%2C%22%2Bis_first_session%22%3Afalse%7D;B.branch_intent=true;end">chrome android intent</a>
-    
-    
-    
-    
-    <a href="https://smule-alternate.app.link/Gr1PBQ6fIY?__branch_flow_type=viewapp&__branch_flow_id=688114382384323057&__branch_mobile_deepview_type=4&_branch_match_id=611345198052001155&referrer=link_click_id%253D611345198052001155%2526utm_source%253DBranch%2526utm_campaign%253D_test%2526utm_medium%253Djourneys&_t=611345198052001155&adjust_campaign=_test&adjust_creative=journeys&adjust_t=hx6dr4q">smule-alternate</a>
-        <a href="https://www.google.com">https://www.google.com</a>
-
-    
-    <a href="https://branchster.app.link/nd4nyAy1XY">https://branchster.app.link/nd4nyAy1XY</a>
-
-    <a href="https://go.worldwinner.com/PDGGiv72vX?partnerTag=99229922992299&advertiser_id=21jea&portal=inboxdollars&email=jalvies@gsngames.com&recommend_username=jalvies-test"">https://go.worldwinner.com/PDGGiv72vX?partnerTag=99229922992299&advertiser_id=21jea&portal=inboxdollars&email=jalvies@gsngames.com&recommend_username=jalvies-test</a>
-
-   
-    <a href="intent://explore?adjust_external_click_id=687049206253217536&link_click_id=611345198052001155#Intent;scheme=smulesing;package=com.smule.singandroid;S.market_referrer=link_click_id%3D611345198052001155%26utm_source%3DBranch%26utm_campaign%3D_test%26utm_medium%3Djourneys%26adjust_external_click_id%3D687049206253217536&__branch_flow_type%3Dviewapp%26__branch_flow_id%3D687049206253217536%26__branch_mobile_deepview_type%3D4%26_branch_match_id%3D611345198052001155%26referrer%3Dlink_click_id%253D611345198052001155%2526utm_source%253DBranch%2526utm_campaign%253D_test%2526utm_medium%253Djourneys%26_t%3D611345198052001155%26adjust_campaign%3D_test%26adjust_creative%3Djourneys%26adjust_t%3Dhx6dr4q;S.branch_data=%7B%22%24og_title%22%3A%22Smule%20-%20Connecting%20the%20world%20through%20music%22%2C%22%24deeplink_path%22%3A%22explore%22%2C%22~creation_source%22%3A5%2C%22~view_name%22%3A%22EngineeringTest%22%2C%22android_tracker_id%22%3A%225fi80yi%22%2C%22%24og_description%22%3A%22Smule%20develops%20music-making%20apps%20that%20connect%20people%3A%20Smule%2C%20AutoRap%2C%20Magic%20Piano%2C%20Guitar!%2C%20I%20Am%20T-Pain%2C%20Ocarina%2C%20and%20more%E2%80%A6%22%2C%22~journey_id%22%3A%22_test%22%2C%22adjust_campaign%22%3A%22_test%22%2C%22%24uri_redirect_mode%22%3A1%2C%22%24og_image_url%22%3A%22https%3A%2F%2Fw1.tc.smule.com%2Fassets%2Ficons%2Ffacebook_share-9be2d7093a7a5dbbf9784f28a97cb4fe.jpg%22%2C%22adjust_t%22%3A%22hx6dr4q%22%2C%22~feature%22%3A%22journeys%22%2C%22_branch_match_id%22%3A%22611345198052001155%22%2C%22~view_id%22%3A%22684295815622498305%22%2C%22%2Burl%22%3A%22https%3A%2F%2Flink.smule.com%2FGr1PBQ6fIY%3F_branch_match_id%3D611345198052001155%26referrer%3Dlink_click_id%25253D611345198052001155%252526utm_source%25253DBranch%252526utm_campaign%25253D_test%252526utm_medium%25253Djourneys%26adjust_campaign%3D_test%26adjust_creative%3Djourneys%26adjust_t%3Dhx6dr4q%22%2C%22referrer%22%3A%22link_click_id%253D611345198052001155%2526utm_source%253DBranch%2526utm_campaign%253D_test%2526utm_medium%253Djourneys%22%2C%22~tags%22%3A%5B%22EngineeringTest%22%5D%2C%22~journey_name%22%3A%22_test%22%2C%22%24one_time_use%22%3Afalse%2C%22~id%22%3A%22684298832276275258%22%2C%22~campaign%22%3A%22_test%22%2C%22%24canonical_url%22%3A%22https%3A%2F%2Fwww.smule.com%2F%3F_branch_view_id%3D684295815622498305%22%2C%22ios_tracker_id%22%3A%2262h2jrx%22%2C%22adjust_creative%22%3A%22journeys%22%2C%22%2Bdomain%22%3A%22smule.app.link%22%2C%22%2Bclick_timestamp%22%3A1565043522%2C%22%2Bclicked_branch_link%22%3Atrue%2C%22%2Bmatch_guaranteed%22%3Atrue%2C%22%2Bis_first_session%22%3Afalse%7D;B.branch_intent=true;end"">android intent</a>
-
-
-
-
-    <a href="intent://explore?adjust_external_click_id=687049206253217536&link_click_id=611345198052001155#Intent;scheme=smulesing;package=com.smule.singandroid;S.market_referrer=link_click_id%3D611345198052001155%26utm_source%3DBranch%26utm_campaign%3D_test%26utm_medium%3Djourneys%26adjust_external_click_id%3D687049206253217536&__branch_flow_type%3Dviewapp%26__branch_flow_id%3D687049206253217536%26__branch_mobile_deepview_type%3D4%26_branch_match_id%3D611345198052001155%26referrer%3Dlink_click_id%253D611345198052001155%2526utm_source%253DBranch%2526utm_campaign%253D_test%2526utm_medium%253Djourneys%26_t%3D611345198052001155%26adjust_campaign%3D_test%26adjust_creative%3Djourneys%26adjust_t%3Dhx6dr4q;S.branch_data=%7B%22%24og_title%22%3A%22Smule%20-%20Connecting%20the%20world%20through%20music%22%2C%22%24deeplink_path%22%3A%22explore%22%2C%22~creation_source%22%3A5%2C%22~view_name%22%3A%22EngineeringTest%22%2C%22android_tracker_id%22%3A%225fi80yi%22%2C%22%24og_description%22%3A%22Smule%20develops%20music-making%20apps%20that%20connect%20people%3A%20Smule%2C%20AutoRap%2C%20Magic%20Piano%2C%20Guitar!%2C%20I%20Am%20T-Pain%2C%20Ocarina%2C%20and%20more%E2%80%A6%22%2C%22~journey_id%22%3A%22_test%22%2C%22adjust_campaign%22%3A%22_test%22%2C%22%24uri_redirect_mode%22%3A1%2C%22%24og_image_url%22%3A%22https%3A%2F%2Fw1.tc.smule.com%2Fassets%2Ficons%2Ffacebook_share-9be2d7093a7a5dbbf9784f28a97cb4fe.jpg%22%2C%22adjust_t%22%3A%22hx6dr4q%22%2C%22~feature%22%3A%22journeys%22%2C%22_branch_match_id%22%3A%22611345198052001155%22%2C%22~view_id%22%3A%22684295815622498305%22%2C%22%2Burl%22%3A%22https%3A%2F%2Flink.smule.com%2FGr1PBQ6fIY%3F_branch_match_id%3D611345198052001155%26referrer%3Dlink_click_id%25253D611345198052001155%252526utm_source%25253DBranch%252526utm_campaign%25253D_test%252526utm_medium%25253Djourneys%26adjust_campaign%3D_test%26adjust_creative%3Djourneys%26adjust_t%3Dhx6dr4q%22%2C%22referrer%22%3A%22link_click_id%253D611345198052001155%2526utm_source%253DBranch%2526utm_campaign%253D_test%2526utm_medium%253Djourneys%22%2C%22~tags%22%3A%5B%22EngineeringTest%22%5D%2C%22~journey_name%22%3A%22_test%22%2C%22%24one_time_use%22%3Afalse%2C%22~id%22%3A%22684298832276275258%22%2C%22~campaign%22%3A%22_test%22%2C%22%24canonical_url%22%3A%22https%3A%2F%2Fwww.smule.com%2F%3F_branch_view_id%3D684295815622498305%22%2C%22ios_tracker_id%22%3A%2262h2jrx%22%2C%22adjust_creative%22%3A%22journeys%22%2C%22%2Bdomain%22%3A%22smule.app.link%22%2C%22%2Bclick_timestamp%22%3A1565043522%2C%22%2Bclicked_branch_link%22%3Atrue%2C%22%2Bmatch_guaranteed%22%3Atrue%2C%22%2Bis_first_session%22%3Afalse%7D;B.branch_intent=true;end"">android intent</a>
-                                                    
-    <a href="smulesing://explore?link_click_id=570327251183795211"">smulesing://explore?link_click_id=570327251183795211</a>
-
-    <a href="https://joonbranch.app.link/4RMt4a0zuX"">https://joonbranch.app.link/4RMt4a0zuX</a>
-    
-    
-    <a href="#" onclick="branch.deepviewCta()">deep link</a>
-    <button onclick="branch.deepviewCta()">deep link</button>
-
-    <a href="https://joonbranch.app.link/Fs7Ol7NZVW">https://joonbranch.app.link/Fs7Ol7NZVW</a>
-    <a href="https://wine-com.app.link/IiLt8rAQjT">https://wine-com.app.link/IiLt8rAQjT</a>
-                  
-                                                    
-
+	  INTENG-9103 test
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
