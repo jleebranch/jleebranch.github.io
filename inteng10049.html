@@ -21,9 +21,19 @@
     });
 	    
     function closeJourneyAndNewPageView() {
+branch.closeJourney(() => {
+    branch.track('pageview');
+});
+      
+    }
+	    
+	    function closeJourneyAndNewPageViewWithDelay() {
       branch.closeJourney();
    
-setTimeout(function(){ branch.track('pageview'); }, 2000);
+		    branch.closeJourney(() => {
+    setTimeout(function(){ branch.track('pageview'); }, 1000);
+});
+
 
       
     }
@@ -33,6 +43,9 @@ setTimeout(function(){ branch.track('pageview'); }, 2000);
   <body>
   
 	  <a href="javascript:void(0)" onClick="closeJourneyAndNewPageView()">close journey and new pageview</a>  
+	  
+	  
+	  <a href="javascript:void(0)" onClick="closeJourneyAndNewPageViewWithDelay()">close journey and new pageview with delay</a>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
