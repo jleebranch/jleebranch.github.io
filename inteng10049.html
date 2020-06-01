@@ -21,9 +21,8 @@
     });
 	    
     function closeJourneyAndNewPageView() {
-      branch.closeJourney(() => {
-        branch.track('pageview');
-      });  
+      branch.closeJourney();
+      branch.track('pageview');
     }
       
     </script>
