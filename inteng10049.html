@@ -22,7 +22,10 @@
 	    
     function closeJourneyAndNewPageView() {
       branch.closeJourney();
-      branch.track('pageview');
+   
+setTimeout(function(){ branch.track('pageview'); }, 2000);
+
+      
     }
       
     </script>
