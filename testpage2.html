@@ -12,71 +12,22 @@
 
     <script>
 	   
-	    var interval;
-function validateProtocol(url){
-   var parser = document.createElement("a");
-   parser.href = url; 
-   var protocol = parser.protocol.toLowerCase();
-   if ([ "javascript:", "vbscript:", "data:", "ftp:", ":", " "].indexOf(protocol) < 0) {
-      return url;}
-   return null;
-}
-	    
-	    function isSafari12Dot3OrGreater() {
-			var ua = navigator.userAgent;
-			var isSafari = isSafariBrowser(ua);
-
-			if (isSafari) {
-				return isGreaterThanVersion(ua, 12.3);
-			}
-
-			return false;
-		};
-	    
-	   
-	    
-function isSafariBrowser(ua) {
-			return !!/^((?!chrome|android|crios|fxios).)*safari/i.test(ua);
-		}
-
-		function isGreaterThanVersion(ua, v) {
-			var match = /iPhone OS ([^ ]*)/i.exec(ua);
-			if (match && match[1]) {
-				try {
-					var version = match[1].replace(/_/gi, '.');
-					version = version.split('.');
-					version = parseFloat(version[0] + '.' + version[1]);
-					if (version >= v) {
-						return true;
-					}
-				} catch (e) {
-					return false;
-				}
-			}
-			return false;
-		}
+	  
 
 	        (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent logEvent disableTracking".split(" "), 0);
 
 	       
     branch.init('key_live_fhu81HZ5sAUGmKxwuQgt6pcoFBnv1Ss8', function(err, data) {
-	      branch.setBranchViewData({
-		  tags: ['tag1', 'tag2'],
-		  data: {
-		    mydata: 'something',
-		    foo: 'bar',
+	      
+    });
+	    
+	branch.setBranchViewData({
+		  data: 
 		    '$ios_deeplink_path': 'open/item/1234'
 		  }
 		});
-    });
-	    
-	    	    branch.setIdentity('joontest123', function (err, data) {
-  console.log(err, data);
-})
-	    
-	    
 
-	    
+	    	    
     </script>
   </head>
   <body>
@@ -104,84 +55,6 @@ function isSafariBrowser(ua) {
 	  			      <a href="https://jleebranch.github.io/testredirect1">modified</a>
 
 
-    <!-- Optional JavaScript -->
-    <script>
-var event_and_custom_data = {
-   "transaction_id": "tras_Id_1232343434",
-   "currency": "USD",
-   "revenue": 180.2,
-   "shipping": 10.5,
-   "tax": 13.5,
-   "coupon": "promo-1234",
-   "affiliation": "high_fi",
-   "description": "Preferred purchase",
-   "purchase_loc": "Palo Alto",
-   "store_pickup": "unavailable"
-};
-
-var content_items = [
-{
-   "$content_schema": "COMMERCE_PRODUCT",
-   "$og_title": "Nike Shoe",
-   "$og_description": "Start loving your steps",
-   "$og_image_url": "http://example.com/img1.jpg",
-   "$canonical_identifier": "nike/1234",
-   "$publicly_indexable": false,
-   "$price": 101.2,
-   "$locally_indexable": true,
-   "$quantity": 1,
-   "$sku": "1101123445",
-   "$product_name": "Runner",
-   "$product_brand": "Nike",
-   "$product_category": "Sporting Goods",
-   "$product_variant": "XL",
-   "$rating_average": 4.2,
-   "$rating_count": 5,
-   "$rating_max": 2.2,
-   "$creation_timestamp": 1499892854966,
-   "$exp_date": 1499892854966,
-   "$keywords": [ "sneakers", "shoes" ],
-   "$address_street": "230 South LaSalle Street",
-   "$address_city": "Chicago",
-   "$address_region": "IL",
-   "$address_country": "US",
-   "$address_postal_code": "60604",
-   "$latitude": 12.07,
-   "$longitude": -97.5,
-   "$image_captions": [ "my_img_caption1", "my_img_caption_2" ],
-   "$condition": "NEW",
-   "$custom_fields": {"foo1":"bar1","foo2":"bar2"}
-},
-{
-   "$og_title": "Nike Woolen Sox",
-   "$canonical_identifier": "nike/5324",
-   "$og_description": "Fine combed woolen sox for those who love your foot",
-   "$publicly_indexable": false,
-   "$price": 80.2,
-   "$locally_indexable": true,
-   "$quantity": 5,
-   "$sku": "110112467",
-   "$product_name": "Woolen Sox",
-   "$product_brand": "Nike",
-   "$product_category": "Apparel & Accessories",
-   "$product_variant": "Xl",
-   "$rating_average": 3.3,
-   "$rating_count": 5,
-   "$rating_max": 2.8,
-   "$creation_timestamp": 1499892854966
-}];
-
-var customer_event_alias = "event alias";
-
-branch.logEvent(
-   "PURCHASE",
-   event_and_custom_data,
-   content_items,
-   customer_event_alias,
-   function(err) { console.log(err); }
-);
-      
-    </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
