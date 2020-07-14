@@ -26,6 +26,13 @@
 		    '$ios_deeplink_path': 'open/item/1234'
 		  }
 		});
+	    
+	    
+	    branch.logEvent(
+     "COMPLETE_REGISTRATION",
+     { metadata: '123' },
+     function(err) { console.log(err); }
+);
 
 	    	    
     </script>
