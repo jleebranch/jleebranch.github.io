@@ -22,6 +22,29 @@ var options = { tracking_disabled: true };
 	      
     });
     
+	    
+	    function isSafariBrowser(ua) {
+      return !!/^((?!chrome|android|crios|fxios).)*safari/i.test(ua);
+    }
+
+    function isGreaterThanVersion(ua, v) {
+      var match = /iPhone OS ([^ ]*)/i.exec(ua);
+      if (match && match[1]) {
+        try {
+          var version = match[1].replace(/_/gi, '.');
+          version = version.split('.');
+          version = parseFloat(version[0] + '.' + version[1]);
+          if (version >= v) {
+            return true;
+          }
+        } catch (e) {
+          return false;
+        }
+      }
+      return false;
+    }
+	    
+	   
     function isSafari12Dot3OrGreater() {
       var ua = navigator.userAgent;
       var isSafari = isSafariBrowser(ua);
