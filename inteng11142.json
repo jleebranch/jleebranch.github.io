@@ -1,0 +1,29 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "6B3RPZJG5Q.com.zumobi.msnbc",
+        "paths": [
+          "NOT /external/*",
+          "NOT /view/*",
+          "NOT /o/*",
+          "NOT /oc/*",
+          "*",
+          "/"
+        ]
+      },
+      {
+        "appID": "6B3RPZJG5Q.com.zumobi.msnbc",
+        "paths": [
+          "NOT /external/*",
+          "NOT /view/*",
+          "NOT /o/*",
+          "NOT /oc/*",
+          "*",
+          "/"
+        ]
+      }
+    ]
+  }
+}
