@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<script type="text/javascript">
+function validateProtocol(url){
+   var parser = document.createElement("a");
+   parser.href = url;
+   var protocol = parser.protocol.toLowerCase();
+   if ([ "javascript:", "vbscript:", "data:", "ftp:", ":", " "].indexOf(protocol) < 0) {
+      return url;}
+   return null;
+}
+
+    function isSafariBrowser(ua) {
+      return !!/^((?!chrome|android|crios|fxios).)*safari/i.test(ua);
+    }
+
+    function isGreaterThanVersion(ua, v) {
+      var match = /iPhone OS ([^ ]*)/i.exec(ua);
+      if (match && match[1]) {
+        try {
+          var version = match[1].replace(/_/gi, '.');
+          version = version.split('.');
+          version = parseFloat(version[0] + '.' + version[1]);
+          if (version >= v) {
+            return true;
+          }
+        } catch (e) {
+          return false;
+        }
+      }
+      return false;
+    }
+
+    function isSafari12Dot3OrGreater() {
+      var ua = navigator.userAgent;
+      var isSafari = isSafariBrowser(ua);
+
+      if (isSafari) {
+        return isGreaterThanVersion(ua, 12.3);
+      }
+
+      return false;
+    };
+          window.onload = function() {
+            // window.top.location = validateProtocol("boohoo://open?link_click_id=875820106496699817");
+            setTimeout(function timeout() {
+              if (document.webkitHidden || document.hidden) { return; };
+              window.top.location = validateProtocol("https://www.boohoo.com/womens/activewear?xmas_homepage_activewear=&utm_term=promo&utm_content=activewear_26122020&utm_source=instagram&utm_campaign=biolink&utm_medium=socialmedia&_i=5Q25eBQYDvc0Brj%2FP%2Bswed9xvpyd%2FvQ9bwpTr%2BHYcjGxOFm30recilyeD9GufH6H&_branch_match_id=875820106496699817");
+            }, 250);
+          };</script>
+		<iframe id="l" width="1" height="1" style="visibility:hidden"></iframe>
+	</body>
+</html>
