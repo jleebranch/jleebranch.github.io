@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<script type="text/javascript">
+		function unescapeHtml(escaped_str) {
+		    var div = document.createElement('div');
+		    div.innerHTML = escaped_str;
+		    var child = div.childNodes[0];
+		    return child ? child.nodeValue : null;
+		}
+
+		function validateProtocol(url) {
+			var parser = document.createElement('a');
+		    parser.href = url;
+		    var protocol = parser.protocol.toLowerCase();
+			if ([ 'javascript:',  'vbscript:',  'data:', 'ftp:',':' , ' '].indexOf(protocol) < 0) {
+				return url;
+			}
+			return null;
+		}
+
+		function validate(url) {
+			var unescaped_value = unescapeHtml(url);
+			if (unescaped_value && validateProtocol(unescaped_value)) {
+				return unescaped_value;
+			}
+			return '/';
+		}			window.onload = function() {
+				var i = "k5a03m9m7tCtVdzaICm53t5MqgzD1p2UXP3oiU6gq5Jv4lEIc9ktK6z3I%2Fb%2FSXdm";
+				var initial_redirect = "https://boohoo.app.link/hID5pkNHwcb?%24uri_redirect_mode=0&_p=c11333dc990b60eee01c8ae3e9b2bd";
+
+				if (i && localStorage._i == null) { localStorage.setItem("_i", i); }
+
+				var separator = initial_redirect.indexOf("?") !== -1 ? "&" : "?";
+
+				window.top.location = validate(initial_redirect + separator + "_i=" + localStorage._i);
+			};
+		</script>
+		<iframe id="l" width="1" height="1" style="visibility:hidden"></iframe>
+	</body>
+</html>
