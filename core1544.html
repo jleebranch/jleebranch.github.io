@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript">
+		function unescapeHtml(escaped_str) {
+		    var div = document.createElement('div');
+		    div.innerHTML = escaped_str;
+		    var child = div.childNodes[0];
+		    return child ? child.nodeValue : null;
+		}
+
+		function validateProtocol(url) {
+			var parser = document.createElement('a');
+		    parser.href = url;
+		    var protocol = parser.protocol.toLowerCase();
+			if ([ 'javascript:',  'vbscript:',  'data:', 'ftp:',':' , ' '].indexOf(protocol) < 0) {
+				return url;
+			}
+			return null;
+		}
+
+		function validate(url) {
+			var unescaped_value = unescapeHtml(url);
+			if (unescaped_value && validateProtocol(unescaped_value)) {
+				return unescaped_value;
+			}
+			return '/';
+		}
+			window.onload = function() {
+				var a = "open?link_click_id=link-877637331178341169-eyIrdXJsIjoiaHR0cHM6Ly9jdXN0b20yLWpsZWUuYnJhbmNoY3VzdG9tLnh5ei9OblZiRHhES1pjYiIsIiRtYXJrZXRpbmdfdGl0bGUiOiJjb3JlMTU0NCBsaW5rIDIiLCJ-bWFya2V0aW5nIjp0cnVlLCJ-Y3JlYXRpb25fc291cmNlIjoxLCIkb25lX3RpbWVfdXNlIjpmYWxzZSwifmlkIjoiODc3NjM3MzMxMTc4MzQxMTY5IiwifmZlYXR1cmUiOiJtYXJrZXRpbmciLCIrZG9tYWluIjoic3g4ZmktamxlZS5icmFuY2hiZXRhLmxpbmsiLCIrY2xpY2tfdGltZXN0YW1wIjoxNjEwNDg4NTY4fQ&amp;link_click_id=rWj8eFIJp0%2FpcWt37xn1EpC%2BC%2Fv4qPyc87HMl8uLLqRz5Onnb6evzMEKd1YhorGh";
+				var b = "branchsters://";
+
+				var fallbackFunction = function() {
+					if (document.webkitHidden || document.hidden) { return; }
+					window.top.location.replace(validate("https://sx8fi-jlee.branchbeta.link/NnVbDxDKZcb?utm_medium=marketing&amp;_branch_match_id=rWj8eFIJp0%2FpcWt37xn1EpC%2BC%2Fv4qPyc87HMl8uLLqRz5Onnb6evzMEKd1YhorGh"));
+				};
+				var addIFrame = function() {
+					var iframe = document.createElement("iframe");
+					iframe.style.border = "none";
+					iframe.style.width = "1px";
+					iframe.style.height = "1px";
+					iframe.src = validate(b + a);
+					document.body.appendChild(iframe);
+				};
+				if ((navigator.userAgent.match(/Chrome/) && navigator.userAgent.match("Version/")) ||
+						navigator.userAgent.match("\\[FB") ||
+						navigator.userAgent.match("Instagram")) {
+					var setURIFunction = function() {
+						addIFrame();
+						setTimeout(fallbackFunction, 750-250);
+					};
+					setTimeout(setURIFunction, 250);
+					return;
+				}
+				else if (navigator.userAgent.match("KAKAO") ||
+							navigator.userAgent.match("NAVER") ||
+							navigator.userAgent.match("Firefox")) {
+					addIFrame();
+				}
+				else if (!(navigator.userAgent.match("OPR") && !navigator.userAgent.match("Android 8"))) {
+					window.top.location.replace(validate(b + a));
+				}
+				setTimeout(fallbackFunction, 750);
+
+			};
+
+
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
