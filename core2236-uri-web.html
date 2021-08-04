@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<script type="text/javascript">
+		function unescapeHtml(escaped_str) {
+		    var div = document.createElement('div');
+		    div.innerHTML = escaped_str;
+		    var child = div.childNodes[0];
+		    return child ? child.nodeValue : null;
+		}
+
+		function validateProtocol(url) {
+			var parser = document.createElement('a');
+		    parser.href = url;
+		    var protocol = parser.protocol.toLowerCase();
+			if ([ 'javascript:',  'vbscript:',  'data:', 'ftp:',':' , ' '].indexOf(protocol) < 0) {
+				return url;
+			}
+			return null;
+		}
+
+		function validate(url) {
+			var unescaped_value = unescapeHtml(url);
+			if (unescaped_value && validateProtocol(unescaped_value)) {
+				return unescaped_value;
+			}
+			return '/';
+		}			window.onload = function() {
+						window.top.location = validate("branchsters://open?link_click_id=951539660683992300");
+
+					setTimeout(function() {
+						window.top.location = validate("https://www.google.com");
+					}, 500);
+			};
+		</script>
+	</body>
+</html>
