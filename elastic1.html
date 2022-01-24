@@ -78,9 +78,9 @@
 
         var searchQueryCampaignPrefix = '{"query":{"prefix":{"~campaign":{"value":"' + searchQuery + '"}}},"sort":[{"created":"' + sort + '"}]}';
 
-        console.log('search string: ' + searchQueryCampaign);
+        console.log('search string: ' + searchQueryCampaignPrefix);
 
-        xhr.send(searchQueryCampaign);
+        xhr.send(searchQueryCampaignPrefix);
 
         /* ============= */
 
