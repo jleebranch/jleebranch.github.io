@@ -4,8 +4,12 @@
   
   <script>
 
+    function removeAll(){
+        document.getElementById("list-puntate").innerHTML = "";
+    }
 
     function populateList(resultJSON) {
+      removeAll();
       const jsonData = JSON.parse(resultJSON);
       var listDiv = document.getElementById('list-puntate');
         var ul = document.createElement('ul');
