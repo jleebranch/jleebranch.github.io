@@ -3,9 +3,19 @@
   <head>
   
   <script>
-    const jsonString = '{"took":4,"timed_out":false,"_shards":{"total":5,"successful":5,"skipped":0,"failed":0},"hits":{"total":50,"max_score":null,"hits":[{"_index":"link","_type":"_doc","_id":"6Lz7jX4Bbg9kMxZ6-gYC","_score":null,"_source":{"+url":"https://sx8fi-jlee.branchbeta.link/testlink49","~tags":["test4"],"$marketing_title":"test marketing link","~marketing":true,"~creation_source":1,"$one_time_use":false,"~id":49,"~campaign":"test49","~channel":"test2","~feature":"test3","created":"2022-01-24T21:26:48.063371"},"sort":[49]},{"_index":"link","_type":"_doc","_id":"57z7jX4Bbg9kMxZ6-Qb8","_score":null,"_source":{"+url":"https://sx8fi-jlee.branchbeta.link/testlink48","~tags":["test4"],"$marketing_title":"test marketing link","~marketing":true,"~creation_source":1,"$one_time_use":false,"~id":48,"~campaign":"test48","~channel":"test2","~feature":"test3","created":"2022-01-24T21:26:48.057496"},"sort":[48]},{"_index":"link","_type":"_doc","_id":"5rz7jX4Bbg9kMxZ6-Qb2","_score":null,"_source":{"+url":"https://sx8fi-jlee.branchbeta.link/testlink47","~tags":["test4"],"$marketing_title":"test marketing link","~marketing":true,"~creation_source":1,"$one_time_use":false,"~id":47,"~campaign":"test47","~channel":"test2","~feature":"test3","created":"2022-01-24T21:26:48.051582"},"sort":[47]},{"_index":"link","_type":"_doc","_id":"5bz7jX4Bbg9kMxZ6-Qbw","_score":null,"_source":{"+url":"https://sx8fi-jlee.branchbeta.link/testlink46","~tags":["test4"],"$marketing_title":"test marketing link","~marketing":true,"~creation_source":1,"$one_time_use":false,"~id":46,"~campaign":"test46","~channel":"test2","~feature":"test3","created":"2022-01-24T21:26:48.045908"},"sort":[46]},{"_index":"link","_type":"_doc","_id":"5Lz7jX4Bbg9kMxZ6-Qbr","_score":null,"_source":{"+url":"https://sx8fi-jlee.branchbeta.link/testlink45","~tags":["test4"],"$marketing_title":"test marketing link","~marketing":true,"~creation_source":1,"$one_time_use":false,"~id":45,"~campaign":"test45","~channel":"test2","~feature":"test3","created":"2022-01-24T21:26:48.039849"},"sort":[45]},{"_index":"link","_type":"_doc","_id":"47z7jX4Bbg9kMxZ6-Qbk","_score":null,"_source":{"+url":"https://sx8fi-jlee.branchbeta.link/testlink44","~tags":["test4"],"$marketing_title":"test marketing link","~marketing":true,"~creation_source":1,"$one_time_use":false,"~id":44,"~campaign":"test44","~channel":"test2","~feature":"test3","created":"2022-01-24T21:26:48.032854"},"sort":[44]},{"_index":"link","_type":"_doc","_id":"4rz7jX4Bbg9kMxZ6-Qbe","_score":null,"_source":{"+url":"https://sx8fi-jlee.branchbeta.link/testlink43","~tags":["test4"],"$marketing_title":"test marketing link","~marketing":true,"~creation_source":1,"$one_time_use":false,"~id":43,"~campaign":"test43","~channel":"test2","~feature":"test3","created":"2022-01-24T21:26:48.027108"},"sort":[43]},{"_index":"link","_type":"_doc","_id":"4bz7jX4Bbg9kMxZ6-QbY","_score":null,"_source":{"+url":"https://sx8fi-jlee.branchbeta.link/testlink42","~tags":["test4"],"$marketing_title":"test marketing link","~marketing":true,"~creation_source":1,"$one_time_use":false,"~id":42,"~campaign":"test42","~channel":"test2","~feature":"test3","created":"2022-01-24T21:26:48.021090"},"sort":[42]},{"_index":"link","_type":"_doc","_id":"4Lz7jX4Bbg9kMxZ6-QbS","_score":null,"_source":{"+url":"https://sx8fi-jlee.branchbeta.link/testlink41","~tags":["test4"],"$marketing_title":"test marketing link","~marketing":true,"~creation_source":1,"$one_time_use":false,"~id":41,"~campaign":"test41","~channel":"test2","~feature":"test3","created":"2022-01-24T21:26:48.015212"},"sort":[41]},{"_index":"link","_type":"_doc","_id":"37z7jX4Bbg9kMxZ6-QbM","_score":null,"_source":{"+url":"https://sx8fi-jlee.branchbeta.link/testlink40","~tags":["test4"],"$marketing_title":"test marketing link","~marketing":true,"~creation_source":1,"$one_time_use":false,"~id":40,"~campaign":"test40","~channel":"test2","~feature":"test3","created":"2022-01-24T21:26:48.009205"},"sort":[40]}]}}'
-    const jsonData = JSON.parse(jsonString);
-    console.log(jsonData);
+
+
+    function populateList(resultJSON) {
+      const jsonData = JSON.parse(resultJSON);
+      var listDiv = document.getElementById('list-puntate');
+        var ul = document.createElement('ul');
+        for (var i = 0; i < jsonData.hits.hits.length; ++i) {
+              var li = document.createElement('li');
+              li.innerHTML = jsonData.hits.hits[i]._id + " link:" + jsonData.hits.hits[i]._source['+url'] + " campaign:" + jsonData.hits.hits[i]._source['~campaign'] + " created:" + jsonData.hits.hits[i]._source['created'];   // Use innerHTML to set the text
+              ul.appendChild(li);                                 
+        }
+        listDiv.appendChild(ul);    // Note here
+    }
 
 
     function loadElasticResultsSort()
@@ -22,9 +32,10 @@
         xhr.onreadystatechange = function () {
            if (xhr.readyState === 4) {
               console.log(xhr.responseText);
+              populateList(xhr.responseText);
            }};
 
-        var searchQuerySortCreated = '{"query":{"match_all":{}},"sort":[{"created":"' + asc +'"}]}';
+        var searchQuerySortCreated = '{"query":{"match_all":{}},"sort":[{"created":"' + sort +'"}]}';
 
         xhr.send(searchQuerySortCreated);
 
@@ -39,6 +50,7 @@
         */
         console.log("sort: " + document.getElementById('created').value);
     }
+
 
     function loadElasticResultsCampaignSearch()
     {
@@ -55,6 +67,7 @@
         xhr.onreadystatechange = function () {
            if (xhr.readyState === 4) {
               console.log(xhr.responseText);
+              populateList(xhr.responseText);
            }};
 
         var searchQueryCampaign = '{"query":{"match_phrase":{"~campaign":"' + searchQuery + '"}},"sort":[{"created":"' + sort + '"}]}';
