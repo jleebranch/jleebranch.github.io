@@ -24,6 +24,8 @@
 
     function loadElasticResultsSort()
     {
+        var resultSize = document.getElementById('resultsize').value;
+        var url = "http://localhost:9200/link/_search?" + "size=" + resultSize + "&pretty";
         var url = "http://localhost:9200/link/_search?pretty";
         var sort = document.getElementById('created').value
 
@@ -58,7 +60,8 @@
 
     function loadElasticResultsCampaignSearch()
     {
-        var url = "http://localhost:9200/link/_search?pretty";
+        var resultSize = document.getElementById('resultsize').value;
+        var url = "http://localhost:9200/link/_search?" + "size=" + resultSize + "&pretty";
         var sort = document.getElementById('created').value
         var searchQuery = document.getElementById('cname').value
 
@@ -114,6 +117,13 @@
   <label for="fname">Campaign</label>
   <input type="text" id="cname" name="cname">
   <button type="button" onClick="loadElasticResultsCampaignSearch()">Search By Campaign</button>
+
+  <label for="resultsize"># Results:</label>
+  <select id="resultsize" name="resultsize">
+    <option value="10">10</option>
+    <option value="50">50</option>
+    <option value="10">100</option>
+  </select> 
 
 
     <div class="col-lg-12" id="list-puntate">
