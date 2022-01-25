@@ -15,7 +15,7 @@
         var ul = document.createElement('ul');
         for (var i = 0; i < jsonData.hits.hits.length; ++i) {
               var li = document.createElement('li');
-              li.innerHTML = jsonData.hits.hits[i]._id + "| link:" + jsonData.hits.hits[i]._source['+url'] + "| campaign:" + jsonData.hits.hits[i]._source['~campaign'] + "| channel:" + jsonData.hits.hits[i]._source['~channel'] + "| created:" + jsonData.hits.hits[i]._source['created'];   // Use innerHTML to set the text
+              li.innerHTML = jsonData.hits.hits[i]._id + " || link:" + jsonData.hits.hits[i]._source['+url'] + " || campaign:" + jsonData.hits.hits[i]._source['~campaign'] + " || channel:" + jsonData.hits.hits[i]._source['~channel'] + " || created:" + jsonData.hits.hits[i]._source['created'];   // Use innerHTML to set the text
               ul.appendChild(li);                                 
         }
         listDiv.appendChild(ul);    // Note here
