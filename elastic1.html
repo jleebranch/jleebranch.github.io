@@ -21,6 +21,20 @@
         listDiv.appendChild(ul);    // Note here
     }
 
+    function populateCampaignAutoComplete(resultJSON) {
+      document.getElementById("campaignauto").innerHTML = "";
+      var list = document.getElementById("campaignauto");
+      const jsonData = JSON.parse(resultJSON);
+      const aggregationData = jsonData.aggregations.title.buckets;
+      
+      aggregationData.forEach(obj => {
+          console.log(obj.key);
+          let option = document.createElement('option');
+          option.value = obj.key;
+          list.appendChild(option);
+      });
+    }
+
 
     function loadElasticResultsSort()
     {
@@ -98,6 +112,49 @@
         console.log("sort: " + document.getElementById('created').value);
     }
 
+    function loadElasticResultsCampaignAggregation()
+    {
+        var url = "http://localhost:9200/link/_search?" + "size=0&pretty";
+        var sort = document.getElementById('created').value
+        var searchQuery = document.getElementById('cname').value
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url);
+
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = function () {
+           if (xhr.readyState === 4) {
+              console.log(xhr.responseText);
+              populateCampaignAutoComplete(xhr.responseText);
+           }};
+
+        //var searchQueryCampaign = '{"query":{"match_phrase":{"~campaign":"' + searchQuery + '"}},"sort":[{"created":"' + sort + '"}]}';
+
+        var searchQueryCampaignPrefix = '{"query":{"match_phrase_prefix":{"~campaign":{"query":"' + searchQuery + '"}}},"sort":[{"created":"' + sort + '"}],"aggs":{"title":{"terms":{"field":"~campaign.keyword","order":{"_count":"desc"},"size":5}}}}';
+
+        console.log('search string: ' + searchQueryCampaignPrefix);
+
+        xhr.send(searchQueryCampaignPrefix);
+
+        /* ============= */
+
+        /*var listDiv = document.getElementById('list-puntate');
+        var ul = document.createElement('ul');
+        for (var i = 0; i < jsonData.hits.hits.length; ++i) {
+              var li = document.createElement('li');
+              li.innerHTML = jsonData.hits.hits[i]._id + " link:" + jsonData.hits.hits[i]._source['+url'] + " campaign:" + jsonData.hits.hits[i]._source['~campaign'] + " created:" + jsonData.hits.hits[i]._source['created'];   // Use innerHTML to set the text
+              ul.appendChild(li);                                 
+        }
+        listDiv.appendChild(ul);    // Note here */
+
+        console.log("sort: " + document.getElementById('created').value);
+    }
+
+
+
+
     function loadElasticResultsChannelSearch()
     {
         var resultSize = document.getElementById('resultsize').value;
@@ -141,6 +198,17 @@
 
 
 
+
+  window.onload = (event) => {
+    // Input change event handler
+    document.getElementsByName("cname")[0].addEventListener('input', autoComplete);
+    function autoComplete(){
+       console.log(this.value);
+       loadElasticResultsCampaignAggregation();
+    }
+  };
+
+
   </script>
 
   </head>
@@ -155,8 +223,11 @@
   <button type="button" onClick="loadElasticResultsSort()">Sort by Created Date Time</button>
 
   <label for="cname">Campaign</label>
-  <input type="text" id="cname" name="cname">
+  <input list="campaignauto" type="text" id="cname" name="cname">
   <button type="button" onClick="loadElasticResultsCampaignSearch()">Search By Campaign</button>
+
+  <datalist id="campaignauto">
+  </datalist>
 
   <label for="chname">Channel</label>
   <input type="text" id="chname" name="chname">
