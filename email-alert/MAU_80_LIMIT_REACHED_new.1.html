@@ -1,9 +1,20 @@
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
+      xmlns:o="urn:schemas-microsoft-com:office:office">
 <html>
   <head>
+    <!-- Marketo Variable Definitions -->
+    <!--[if gte mso 9]>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:AllowPNG/>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Simple Transactional Email</title>
+    <title>MAU Limit Email</title>
     <style>
       /* -------------------------------------
           GLOBAL RESETS
@@ -295,40 +306,13 @@
           PRESERVE THESE STYLES IN THE HEAD
       ------------------------------------- */
       @media all {
-        .ExternalClass {
-          width: 100%; 
-        }
-        .ExternalClass,
-        .ExternalClass p,
-        .ExternalClass span,
-        .ExternalClass font,
-        .ExternalClass td,
-        .ExternalClass div {
-          line-height: 100%; 
-        }
-        .apple-link a {
-          color: inherit !important;
-          font-family: inherit !important;
-          font-size: inherit !important;
-          font-weight: inherit !important;
-          line-height: inherit !important;
-          text-decoration: none !important; 
-        }
-        #MessageViewBody a {
-          color: inherit;
-          text-decoration: none;
-          font-size: inherit;
-          font-family: inherit;
-          font-weight: inherit;
-          line-height: inherit;
-        }
         .btn-primary table td:hover {
-          background-color: #34495e !important; 
+          background-color: #34495e !important;
         }
         .btn-primary a:hover {
           background-color: #34495e !important;
-          border-color: #34495e !important; 
-        } 
+          border-color: #34495e !important;
+        }
       }
 
 
@@ -463,7 +447,6 @@
         /* Primary / Tundora #4E5760 */
 
         color: #4E5760;
-        position:absolute;
         margin-top:10px
       }
 
@@ -495,7 +478,7 @@
                           style="text-align:left;font-family: Open Sans, Helvetica, Arial; font-size:16px; color:#444444; ">
                         <div>
                           <p style="text-align: center; padding: 5px 0px 0px 0px;"><img
-                                    src="https://cdn.branch.io/assets/a22582f8eeb0ce3142cc9da686e9846a90561c75/static/images/branch-logos/branch-logo_white.svg"
+                                    src="https://cdn.branch.io/branch-assets/email-template/branch-logo_white.svg"
                                     alt="branch-logo_white.svg" height="58" width="116"
                                     style="display: block; margin-left: auto; margin-right: auto;"/></p>
                         </div>
@@ -512,7 +495,7 @@
                     <tr>
                       <td>
                         <p class="email-big-text">You're getting closer to your MAU limit, congratulations on your continued growth!</p>
-                        <p class="email-small-text">Appsolutely has used about <span style="color:#F57C00;">80% of its free 10K MAU limit</span> for this billing cycle. If you exceed <b>10k MAU</b>, you will be charged <b>$5</b> for each additional <b>1k MAU</b> for the Self-serve Platform, plus additional overages for each additional add-on solution. Your limit will reset at the beginning of the next billing period, March 1st, 2023.</p></br> 
+                        <p class="email-small-text">Branch Monster Factory has used about <span style="color:#F57C00;"><b>80% of its free 10k MAU limit</b></span> for this billing cycle. If you exceed <b>10k MAU</b>, you will be charged <b>$5</b> for each additional <b>1k MAU</b> for the Self-serve Platform, plus additional overages for each additional add-on solution. Your limit will reset at the beginning of the next billing period, March 1st, 2023.</p></br>
                         <p class="email-small-text">Interested in increasing your MAU limit? Chat with sales to upgrade to our Enterprise Platform.</p>
                         <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
                           <tbody>
@@ -521,7 +504,7 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                   <tbody>
                                     <tr>
-                                      <td> <a href="http://htmlemail.io" target="_blank">Chat with sales</a> </td>
+                                      <td> <a href="https://dashboard-nightlyregression.stage.branch.io?modal=request-platform-upgrade" target="_blank">Chat with sales</a> </td>
                                     </tr>
                                   </tbody>
                                 </table>
@@ -547,9 +530,9 @@
               <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td>
-                    <a href="https://www.facebook.com/branchmetrics/" class="social-media-icons"><img src="FB.svg"></a>
-                    <a href="https://www.linkedin.com/company/branch-metrics/" class="social-media-icons"><img src="Linkedin.svg"></a>
-                    <a href="https://twitter.com/branch-metrics" class="social-media-icons"><img src="Twitter.svg"></a>
+                    <a href="https://www.facebook.com/branchmetrics/" class="social-media-icons"><img src="https://cdn.branch.io/branch-assets/email-template/fb_icon.svg"></a>
+                    <a href="https://www.linkedin.com/company/branch-metrics/" class="social-media-icons"><img src="https://cdn.branch.io/branch-assets/email-template/linkedin_icon.svg"></a>
+                    <a href="https://twitter.com/branchmetrics" class="social-media-icons"><img src="https://cdn.branch.io/branch-assets/email-template/twitter_icon.svg"></a>
                     <span class="social-media-at">@branchmetrics</span>
                   </td>
                 </tr>
